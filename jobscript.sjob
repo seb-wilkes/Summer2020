@@ -4,7 +4,7 @@
 
 ### Set Resource Usage
 #PBS -lwalltime=00:02:00
-#PBS -lselect=1:ncpus=1:mem=2gb
+#PBS -lselect=1:ncpus=4:mem=2gb
 
 ### Merge output and error files
 #PBS -j oe
