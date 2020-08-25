@@ -1,8 +1,25 @@
+#!/bin/bash
+### Specify job name
+#PBS -N seb_fbpix_1
+
+### Set Resource Usage
 #PBS -lwalltime=00:02:00
 #PBS -lselect=1:ncpus=1:mem=2gb
+
+### Merge output and error files
+#PBS -j oe
+#PBS -k eod
+
+### Send email on abort, begin and end
+#PBS -m abe
+### Specify mail recipient
+#PBS -M jsm19@ic.ac.uk
+
+### Run our code
 module load anaconda3/personal
+python $HOME/summer2020/main.py
+### Can specify input file to python script $PBS_O_WORKDIR/path/to/input.txt
 
-python $HOME/myprog.py $PBS_O_WORKDIR/path/to/input.txt
-
+### Move output files from the temporarily created output folder
 mkdir $WORK/$PBS_JOBID
 cp * $WORK/$PBS_JOBID
